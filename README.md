@@ -2,7 +2,9 @@
 
 ![Core Icon](http://i.imgur.com/8XB8XHF.png)
 
+## About this fork
 
+This fork adds custom damages to ProjectKorra and some more features.
 
 ## About ProjectKorra
 
