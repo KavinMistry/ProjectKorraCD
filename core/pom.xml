@@ -100,6 +100,13 @@
 
   <dependencies>
     <dependency>
+      <groupId>me.dessie.continentsworld</groupId>
+      <artifactId>TheContinentsWorld</artifactId>
+      <version>1.0.0</version>
+      <scope>system</scope>
+      <systemPath>C:\Users\Kavin\IdeaProjects\ProjectKorra\libs\TheContinentsWorld-1.0.0-all.jar</systemPath>
+    </dependency>
+    <dependency>
       <groupId>com.projectkorra</groupId>
       <artifactId>core-modern</artifactId>
       <version>${project.version}</version>
@@ -229,6 +236,12 @@
       <artifactId>api</artifactId>
       <version>2.1.0-SNAPSHOT</version>
       <scope>provided</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>net.kyori</groupId>
+          <artifactId>event-api</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <!-- Plan -->
     <dependency>
@@ -285,20 +298,6 @@
           <publishingServerId>central</publishingServerId>
           <checksums>required</checksums>
         </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-gpg-plugin</artifactId>
-        <version>3.2.7</version>
-        <executions>
-          <execution>
-            <id>sign-artifacts</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>sign</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

@@ -4,7 +4,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.logging.Logger;
 
-import com.djrapitops.plan.extension.ExtensionService;
+import com.projectkorra.projectkorra.command.CustomDamageCommand;
+import com.projectkorra.projectkorra.event.CustomDamageListener;
 import com.projectkorra.projectkorra.hooks.PlanExtension;
 import com.projectkorra.projectkorra.region.RegionProtection;
 import org.bukkit.Bukkit;
@@ -123,6 +124,11 @@ public class ProjectKorra extends JavaPlugin {
 		if (Bukkit.getPluginManager().isPluginEnabled("Plan")) {
 			new PlanExtension();
 		}
+
+		this.getCommand("reloadCustomDamage").setExecutor(new CustomDamageCommand());
+		CustomDamageConfig customDamageConfig = CustomDamageConfig.getInstance();
+		customDamageConfig.load();
+		this.getServer().getPluginManager().registerEvents(new CustomDamageListener(customDamageConfig), this);
 	}
 
 	@Override
@@ -177,5 +183,10 @@ public class ProjectKorra extends JavaPlugin {
 
 	public static boolean isDatabaseCooldownsEnabled() {
 		return ConfigManager.getConfig().getBoolean("Properties.DatabaseCooldowns");
+	}
+
+	public static ProjectKorra getInstance()
+	{
+		return getPlugin(ProjectKorra.class);
 	}
 }

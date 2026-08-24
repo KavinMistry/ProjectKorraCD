@@ -827,7 +827,8 @@ public class GeneralMethods {
 		final Location backwards = origin.clone().add(direction.clone().multiply(-1));
 		final Predicate<Entity> filter = getEntityFilter().and(entity -> !avoid.contains(entity)
 				&& entity.getWorld().equals(origin.getWorld())
-				&& entity instanceof LivingEntity);
+				&& entity instanceof LivingEntity
+				&& !(entity instanceof Player targetPlayer && me.dessie.continents.ContinentsModule.isAllied(player, targetPlayer)));
 		avoid.add(player);
 
 		for (Entity entity : getEntitiesAroundPoint(origin, range, filter)) {
@@ -1593,7 +1594,14 @@ public class GeneralMethods {
 		setVelocity(null,entity,vector);
 	}
 	
-	public static void setVelocity(Ability ability, Entity entity, Vector vector) {
+	public static void setVelocity(Ability ability, Entity entity, Vector vector)
+	{
+		if(ability != null && ability.getPlayer() != null && entity instanceof Player target) {
+			if (me.dessie.continents.ContinentsModule.isAllied(ability.getPlayer(), target)) {
+				return;
+			}
+		}
+
 		final AbilityVelocityAffectEntityEvent event = new AbilityVelocityAffectEntityEvent(ability, entity, vector);
 		Bukkit.getServer().getPluginManager().callEvent(event);
 		if (event.isCancelled()) {

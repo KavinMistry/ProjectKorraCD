@@ -3,12 +3,19 @@ author: ProjectKorra
 api-version: 1.16
 version: ${project.version}
 main: com.projectkorra.projectkorra.ProjectKorra
+depend: [TheContinentsWorld]
 softdepend: [GriefDefender, WorldGuard, WorldEdit, Factions, GriefPrevention, Towny, NoCheatPlus, LWC, Residence, RedProtect, PlaceholderAPI, Lands, Plan, HuskTowns]
 commands:
   projectkorra:
     aliases: [b,bending,mtla,tla,korra,pk,bend]
     usage: /<command>
+  reloadCustomDamage:
+    description: "This will reload Project Korra's custom damage config"
+    usage: "/reloadCustomDamage"
+    permission: reloadCustomDamage.admin
 permissions:
+  reloadCustomDamage.admin:
+    default: op
   bending.admin:
     default: op
     description: Grants access to all commands and abilities.

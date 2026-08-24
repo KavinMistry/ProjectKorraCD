@@ -174,6 +174,12 @@ public class DamageHandler {
 			source = ability.getPlayer();
 		}
 
+		if (source != null && entity instanceof Player targetPlayer) {
+			if (me.dessie.continents.ContinentsModule.isAllied(source, targetPlayer)) {
+				return;
+			}
+		}
+
 		double percentage = getIgnoreArmorPercentage(ability);
 		// Adding source so that we don't need to modify FireDamageTimer class, which would cause breaks.
 		final AbilityDamageEntityEvent damageEvent = new AbilityDamageEntityEvent(entity, ability, damage, (ignoreArmor || percentage == 1.));
